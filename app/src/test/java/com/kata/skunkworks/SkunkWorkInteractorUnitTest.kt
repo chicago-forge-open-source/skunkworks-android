@@ -31,7 +31,7 @@ class SkunkWorkInteractorUnitTest {
     private lateinit var mockRepo: SkunkWorkRepository
 
     @Test
-    fun findsAllSkunkwork() {
+    fun findAllSkunkwork() {
         whenever(mockRepo.findAllSkunkWorks()).thenReturn(list)
         val interactor = SkunkWorkInteractor(mockRepo)
         assertEquals(list, interactor.findAllSkunkWork())
