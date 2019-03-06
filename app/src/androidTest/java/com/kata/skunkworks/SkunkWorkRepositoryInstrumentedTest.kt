@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -59,5 +60,12 @@ class SkunkWorkRepositoryInstrumentedTest {
         ).map(::SkunkWork)
 
         assertEquals(list, repo.findAllSkunkWorks())
+    }
+
+    @Test
+    fun testAdd() {
+        val skunkWork = SkunkWork("New SkunkWork")
+        repo.addSkunkWork(skunkWork)
+        assertTrue(repo.findAllSkunkWorks().contains(skunkWork))
     }
 }
