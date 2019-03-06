@@ -41,7 +41,7 @@ class SkunkWorkRepositoryInstrumentedTest {
     }
 
     @Test
-    fun givenNoSkunksWorksExistFinallSkunkWorksReturnsDefaultList() {
+    fun givenNoSkunksWorksExistSkunkWorksReturnsDefaultList() {
         val list: List<SkunkWork> = listOf(
                 "Can Beam",
                 "Mini Drone Forge Tour Guide",
@@ -63,7 +63,7 @@ class SkunkWorkRepositoryInstrumentedTest {
     }
 
     @Test
-    fun testAdd() {
+    fun addSkunkWorksAddsSkunkWorkToList() {
         val skunkWork = SkunkWork("New SkunkWork")
         repo.addSkunkWork(skunkWork)
         assertTrue(repo.findAllSkunkWorks().contains(skunkWork))
