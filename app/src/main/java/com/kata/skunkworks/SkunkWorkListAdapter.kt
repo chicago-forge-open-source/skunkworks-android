@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.skunk_work_list_item.view.*
 
 class SkunkWorkListAdapter(val skunkWorkList: List<SkunkWork>) :
-    RecyclerView.Adapter<SkunkWorkListAdapter.SkunkWorkListItem>() {
+        RecyclerView.Adapter<SkunkWorkListAdapter.SkunkWorkListItem>() {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): SkunkWorkListItem {
         return SkunkWorkListItem(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.skunk_work_list_item,
-                parent,
-                false
-            )
+                LayoutInflater.from(parent.context).inflate(
+                        R.layout.skunk_work_list_item,
+                        parent,
+                        false
+                )
         )
     }
 
@@ -29,7 +29,7 @@ class SkunkWorkListAdapter(val skunkWorkList: List<SkunkWork>) :
     class SkunkWorkListItem(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindTitle(title: String) {
-
+            view.skunk_work_title.text = title
         }
     }
 

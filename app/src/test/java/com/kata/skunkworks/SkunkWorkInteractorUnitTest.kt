@@ -11,20 +11,20 @@ import org.mockito.junit.MockitoJUnitRunner
 class SkunkWorkInteractorUnitTest {
 
     private val list: List<SkunkWork> = listOf(
-        "Can Beam",
-        "Mini Drone Forge Tour Guide",
-        "Smart Light That Goes Red When Build Fails",
-        "NFC Chip That Gives Wifi Access",
-        "NFC Ventra Clothing",
-        "Train Set",
-        "Nap Pods",
-        "DX War Room",
-        "Greeting Robot That Recognizes You Based On Key Card",
-        "Cool Light For When Creative Collision is Ready",
-        "Interactive Room Reservation System",
-        "Custom Magnet All The Things",
-        "Amiibo Features Around Features Around The Office",
-        "Card Wall With NFC Chips"
+            "Can Beam",
+            "Mini Drone Forge Tour Guide",
+            "Smart Light That Goes Red When Build Fails",
+            "NFC Chip That Gives Wifi Access",
+            "NFC Ventra Clothing",
+            "Train Set",
+            "Nap Pods",
+            "DX War Room",
+            "Greeting Robot That Recognizes You Based On Key Card",
+            "Cool Light For When Creative Collision is Ready",
+            "Interactive Room Reservation System",
+            "Custom Magnet All The Things",
+            "Amiibo Features Around Features Around The Office",
+            "Card Wall With NFC Chips"
     ).map(::SkunkWork)
 
     @Mock
