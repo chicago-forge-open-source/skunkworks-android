@@ -1,5 +1,6 @@
 package com.kata.skunkworks
 
+import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
@@ -33,7 +34,13 @@ class SkunkWorkInteractorUnitTest {
     @Test
     fun findAllSkunkwork() {
         whenever(mockRepo.findAllSkunkWorks()).thenReturn(list)
-        val interactor = SkunkWorkInteractor(mockRepo)
-        assertEquals(list, interactor.findAllSkunkWork())
+        assertEquals(list, SkunkWorkInteractor(mockRepo).findAllSkunkWork())
+    }
+
+    @Test
+    fun addSkunkWork() {
+        val title = "New SkunkWork Title"
+        SkunkWorkInteractor(mockRepo).addSkunkWork(title)
+        verify(mockRepo).addSkunkWork(SkunkWork(title))
     }
 }

@@ -6,4 +6,8 @@ class SkunkWorkInteractor(val skunkworkRepo: SkunkWorkRepository) {
         return skunkworkRepo.findAllSkunkWorks()
     }
 
+    fun addSkunkWork(title: String) {
+        skunkworkRepo.addSkunkWork(SkunkWork(title))
+    }
+
 }
