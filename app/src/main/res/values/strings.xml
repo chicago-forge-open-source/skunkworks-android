@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="skunkworkSharedPrefs">com.kata.skunkworks</string>
     <string name="allSkunkwork">skunkworksList</string>
+    <string name="title">Title</string>
+    <string name="save">Save</string>
 </resources>
