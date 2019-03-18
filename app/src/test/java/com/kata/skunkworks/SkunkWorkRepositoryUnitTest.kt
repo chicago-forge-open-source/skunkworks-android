@@ -1,36 +1,19 @@
 package com.kata.skunkworks
 
 import android.content.Context
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.core.app.ApplicationProvider
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-@RunWith(AndroidJUnit4ClassRunner::class)
-class SkunkWorkRepositoryInstrumentedTest {
-    val context: Context = InstrumentationRegistry.getInstrumentation().context
+@RunWith(RobolectricTestRunner::class)
+class SkunkWorkRepositoryUnitTest {
+    val context = ApplicationProvider.getApplicationContext<Context>()
     val prefs = context.getSharedPreferences("com.kata.skunkworks", Context.MODE_PRIVATE)
     val editor = prefs.edit()
     val repo = SkunkWorkRepository(context)
-
-    @Before
-    fun setUp() {
-        clearSharedPrefs()
-    }
-
-    @After
-    fun cleanUp() {
-        clearSharedPrefs()
-    }
-
-    private fun clearSharedPrefs() {
-        editor.clear()
-        editor.commit()
-    }
 
     @Test
     fun givenAListOfSkunkWorksExistFindAllSkunkWorksReturnsTheList() {
@@ -42,7 +25,7 @@ class SkunkWorkRepositoryInstrumentedTest {
 
     @Test
     fun givenNoSkunksWorksExistSkunkWorksReturnsDefaultList() {
-        val list: List<SkunkWork> = listOf(
+        val defaultList: List<SkunkWork> = listOf(
             "Can Beam",
             "Mini Drone Forge Tour Guide",
             "Smart Light That Goes Red When Build Fails",
@@ -59,7 +42,7 @@ class SkunkWorkRepositoryInstrumentedTest {
             "Card Wall With NFC Chips"
         ).map(::SkunkWork)
 
-        assertEquals(list, repo.findAllSkunkWorks())
+        assertEquals(defaultList, repo.findAllSkunkWorks())
     }
 
     @Test
