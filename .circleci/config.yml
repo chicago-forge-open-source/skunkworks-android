@@ -22,3 +22,5 @@ jobs:
         key: v1-dependencies-{{ checksum "build.gradle" }}
 
     - run: ./gradlew test
+    - run: echo $KEY_STORE | base64 --decode > secrets/testAppKS
+    - run: ./gradlew publish
