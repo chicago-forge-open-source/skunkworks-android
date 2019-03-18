@@ -2,7 +2,6 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/openjdk:8-jdk
     - image: circleci/android:api-27
 
     working_directory: ~/repo
@@ -15,11 +14,11 @@ jobs:
         - v1-dependencies-{{ checksum "build.gradle" }}
         - v1-dependencies-
 
-    - run: gradle dependencies
+    - run: ./gradlew androidDependencies
 
     - save_cache:
         paths:
         - ~/.gradle
         key: v1-dependencies-{{ checksum "build.gradle" }}
 
-    - run: gradle test
+    - run: ./gradlew test
