@@ -14,7 +14,8 @@ jobs:
         - v1-dependencies-{{ checksum "build.gradle" }}
         - v1-dependencies-
 
-    - run: mkdir secrets && echo $KEY_STORE | base64 --decode > secrets/testAppKS
+    - run: mkdir secrets
+    - run: echo $KEY_STORE | base64 --decode > secrets/testAppKS
     - run: ./gradlew androidDependencies
 
     - save_cache:
