@@ -26,7 +26,7 @@ jobs:
 
     - run: ./gradlew test
 
-    - run: sdkmanager "system-images;android-23;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-23;default;armeabi-v7a"
+    - run: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-22;default;armeabi-v7a"
 
     - run:
         name: Launch emulator
