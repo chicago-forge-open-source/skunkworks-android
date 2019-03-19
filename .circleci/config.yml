@@ -28,9 +28,10 @@ jobs:
 
     - run: |
         set -e
-        sudo apt-get install mesa-utils
+        sudo apt-get update
+        sudo apt-get install --fix-missing mesa-utils
         # Source https://github.com/bitrise-docker/android/blob/7ab19405c13da614f54c17dffb79bcbb490b5fb9/Dockerfile#L149
-        sudo apt-get install -y libqt5widgets5
+        sudo apt-get install -y --fix-missing libqt5widgets5
 
     - run: |
         # echo "Listing of /opt/android/sdk"
