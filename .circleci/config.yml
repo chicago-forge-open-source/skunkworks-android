@@ -21,13 +21,6 @@ jobs:
     - run: echo $SERVICE_ACCOUNT_JSON | base64 --decode > secrets/serviceAccount.json
     - run: ./gradlew androidDependencies
 
-    - save_cache:
-        paths:
-        - ~/.gradle
-        key: v1-dependencies-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-
-    - run: ./gradlew test
-
     - run: |
         set -e
         sudo apt-get update
@@ -38,7 +31,12 @@ jobs:
 
     - run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;  #Captures SIGPIPE 141 error but still allow repeating "y" to accept all licenses
 
-    - run: sdkmanager "system-images;android-27;default;x86" && echo "no" | avdmanager create avd -n test -k "system-images;android-27;default;x86"
+    - run: sdkmanager "system-images;android-27;default;x86_64" && echo "no" | avdmanager create avd -n test -k "system-images;android-27;default;x86_64"
+
+    - save_cache:
+        paths:
+        - ~/.gradle
+        key: v1-dependencies-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
     - run:
         name: Launch emulator
