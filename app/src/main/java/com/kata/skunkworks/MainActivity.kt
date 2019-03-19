@@ -3,8 +3,8 @@ package com.kata.skunkworks
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val interactor = SkunkWorkInteractor(SkunkWorkRepository(appContext))
-        skunk_works_list.layoutManager = LinearLayoutManager(appContext)
+        skunk_works_list.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(appContext)
         skunk_works_list.adapter = SkunkWorkListAdapter(appContext, interactor.findAllSkunkWork())
     }
 }

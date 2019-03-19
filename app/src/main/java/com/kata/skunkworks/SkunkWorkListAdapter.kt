@@ -1,13 +1,13 @@
 package com.kata.skunkworks
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.skunk_work_list_item.view.*
 
-class SkunkWorkListAdapter(val appContext: Context, var skunkWorkList: MutableList<SkunkWork>) : RecyclerView.Adapter<SkunkWorkListAdapter.SkunkWorkListItem>() {
+class SkunkWorkListAdapter(val appContext: Context, var skunkWorkList: MutableList<SkunkWork>) : androidx.recyclerview.widget.RecyclerView.Adapter<SkunkWorkListAdapter.SkunkWorkListItem>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): SkunkWorkListItem {
 
@@ -35,7 +35,7 @@ class SkunkWorkListAdapter(val appContext: Context, var skunkWorkList: MutableLi
         skunkWorkListItem.deleteSkunkWork(position, this)
     }
 
-    class SkunkWorkListItem(private val skunkwork: View) : RecyclerView.ViewHolder(skunkwork) {
+    class SkunkWorkListItem(private val skunkwork: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(skunkwork) {
 
         fun bindTitle(title: String) {
             skunkwork.skunk_work_title.text = title
