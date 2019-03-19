@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/android:api-27
+    - image: circleci/android:api-28
 
     working_directory: ~/repo
 
@@ -11,7 +11,7 @@ jobs:
 
     - restore_cache:
         keys:
-        - v1-dependencies-{{ checksum "build.gradle" }}
+        - v1-dependencies-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
         - v1-dependencies-
 
     - run: mkdir secrets
@@ -22,15 +22,15 @@ jobs:
     - save_cache:
         paths:
         - ~/.gradle
-        key: v1-dependencies-{{ checksum "build.gradle" }}
+        key: v1-dependencies-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
     - run: ./gradlew test
 
-    - run: sdkmanager "system-images;android-16;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-16;default;armeabi-v7a"
+    - run: sdkmanager "system-images;android-28;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-28;default;armeabi-v7a"
 
     - run:
         name: Launch emulator
-        command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel auto -verbose
+        command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
         background: true
 
     - run: ./gradlew connectedAndroidTest
