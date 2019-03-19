@@ -37,7 +37,7 @@ class SkunkWorkRepositoryInstrumentedTest {
         val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B"))
         editor.putString("skunkworksList", list.map(SkunkWork::title).joinToString(","))
         editor.apply()
-        assertEquals(list, repo.findAllSkunkWorks())
+        assertEquals(list, repo.findAllSkunkWorksss())
     }
 
     @Test
@@ -59,13 +59,13 @@ class SkunkWorkRepositoryInstrumentedTest {
                 "Card Wall With NFC Chips"
         ).map(::SkunkWork)
 
-        assertEquals(list, repo.findAllSkunkWorks())
+        assertEquals(list, repo.findAllSkunkWorksss())
     }
 
     @Test
     fun addSkunkWorksAddsSkunkWorkToList() {
         val skunkWork = SkunkWork("New SkunkWork")
         repo.addSkunkWork(skunkWork)
-        assertTrue(repo.findAllSkunkWorks().contains(skunkWork))
+        assertTrue(repo.findAllSkunkWorksss().contains(skunkWork))
     }
 }

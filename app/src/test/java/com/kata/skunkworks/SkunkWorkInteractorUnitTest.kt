@@ -33,7 +33,7 @@ class SkunkWorkInteractorUnitTest {
 
     @Test
     fun findAllSkunkwork() {
-        whenever(mockRepo.findAllSkunkWorks()).thenReturn(list)
+        whenever(mockRepo.findAllSkunkWorksss()).thenReturn(list)
         assertEquals(list, SkunkWorkInteractor(mockRepo).findAllSkunkWork())
     }
 

@@ -48,14 +48,14 @@ class AddSkunkWorkInstrumentedTest {
     }
 
     @Test
-    fun onShowAddSkunkWorkClickAddSkunkWorkActivityShown() {
+    fun whenClickingAddSkunkWorkShowsAddSkunkWorkActivity() {
         intended(hasComponent(AddSkunkWorkActivity::class.java.name))
         onView(withId(R.id.sw_title_edit_text)).check(matches(withHint("Title")))
         onView(withId(R.id.sw_save_btn)).check(matches(withText("Save")))
     }
 
     @Test
-    fun testAddNewSkunkwork() {
+    fun addsNewSkunkwork() {
         val newTitle = "Some New Idea"
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(newTitle))
         onView(withId(R.id.sw_save_btn)).perform(click())
@@ -64,7 +64,7 @@ class AddSkunkWorkInstrumentedTest {
     }
 
     @Test
-    fun testTrimBlankSpacesFromTitle() {
+    fun trimsBlankSpacesFromTitle() {
         val title = "Some New Idea"
         val newTitle = "     $title"
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(newTitle))
@@ -74,7 +74,7 @@ class AddSkunkWorkInstrumentedTest {
     }
 
     @Test
-    fun testValidateForStingTitle() {
+    fun validatesForStingTitle() {
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(""))
         onView(withId(R.id.sw_save_btn)).perform(click())
         intended(hasComponent(AddSkunkWorkActivity::class.java.name))
