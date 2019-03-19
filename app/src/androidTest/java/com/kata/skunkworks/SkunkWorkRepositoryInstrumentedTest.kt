@@ -7,6 +7,7 @@ import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -32,6 +33,7 @@ class SkunkWorkRepositoryInstrumentedTest {
         editor.commit()
     }
 
+    @Ignore
     @Test
     fun givenAListOfSkunkWorksExistFindAllSkunkWorksReturnsTheList() {
         val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B"))
