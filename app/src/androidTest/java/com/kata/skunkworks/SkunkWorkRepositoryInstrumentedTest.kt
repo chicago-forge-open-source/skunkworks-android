@@ -33,12 +33,11 @@ class SkunkWorkRepositoryInstrumentedTest {
         editor.commit()
     }
 
-    @Ignore
     @Test
     fun givenAListOfSkunkWorksExistFindAllSkunkWorksReturnsTheList() {
         val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B"))
         editor.putString("skunkworksList", list.map(SkunkWork::title).joinToString(","))
-        editor.apply()
+        editor.commit()
         assertEquals(list, repo.findAllSkunkWorks())
     }
 
