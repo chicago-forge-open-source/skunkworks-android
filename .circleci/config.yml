@@ -33,7 +33,7 @@ jobs:
         # Source https://github.com/bitrise-docker/android/blob/7ab19405c13da614f54c17dffb79bcbb490b5fb9/Dockerfile#L149
         sudo apt-get install -y --fix-missing libqt5widgets5
 
-    -run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;  #Captures SIGPIPE 141 error but still allow repeating "y" to accept all licenses
+    - run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;  #Captures SIGPIPE 141 error but still allow repeating "y" to accept all licenses
 
     - run: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-22;default;armeabi-v7a"
 
