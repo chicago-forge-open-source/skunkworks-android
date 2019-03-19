@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: circleci/android:api-27
+    - image: circleci/android:api-28
       environment:
         JVM_OPTS: -Xmx3200m
 
@@ -27,11 +27,12 @@ jobs:
         sudo apt-get install --fix-missing mesa-utils
         sudo apt-get install -y --fix-missing libqt5widgets5
 
+    - run: sdkmanager --update
     - run: sdkmanager --list --verbose | grep system-images
 
     - run: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;  #Captures SIGPIPE 141 error but still allow repeating "y" to accept all licenses
 
-    - run: sdkmanager "system-images;android-27;default;x86_64" && echo "no" | avdmanager create avd -n test -k "system-images;android-27;default;x86_64"
+    - run: sdkmanager "system-images;android-24;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
 
     - save_cache:
         paths:
