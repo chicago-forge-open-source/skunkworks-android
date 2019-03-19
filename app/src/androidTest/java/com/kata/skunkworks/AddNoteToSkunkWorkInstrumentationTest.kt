@@ -1,24 +1,26 @@
 package com.kata.skunkworks
 
-import android.view.View
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.intent.rule.IntentsTestRule
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class AddNoteToSkunkWorkInstrumentationTest{
-    private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
     @get:Rule
-    val activityRule = IntentsTestRule(SkunkWorkActivity::class.java)
+    val activityRule = IntentsTestRule(MainActivity::class.java)
 
     @Before
     fun setUp() {
@@ -32,15 +34,9 @@ class AddNoteToSkunkWorkInstrumentationTest{
 
     @Test
     fun showsASkunkWorkWithAddNotesField() {
-//        val skunkWorkList = onView(withId(R.id.skunk_works_list)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()))
-
-    }
-
-    fun clickOnViewChild(viewId: Int) = object : ViewAction {
-        override fun getConstraints() = null
-
-        override fun getDescription() = "Click on a child view with specified id."
-
-        override fun perform(uiController: UiController, view: View) = click().perform(uiController, view.findViewById<View>(viewId))
+        onView(withId(R.id.skunk_works_list))
+            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+//        onData(allOf(`is`(instanceOf(String::class.java)))).atPosition(2).perform(click())
+        onView(withId(R.id.sw_title)).check(matches(withText("Can Beam")))
     }
 }
