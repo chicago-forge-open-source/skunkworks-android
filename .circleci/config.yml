@@ -41,7 +41,7 @@ jobs:
     - run:
         name: Launch emulator
         command: emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
-        background: trued
+        background: true
 
     - run: circle-android wait-for-boot
 
