@@ -70,7 +70,7 @@ class AddSkunkWorkInstrumentedTest {
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(""))
         onView(withId(R.id.sw_save_btn)).perform(click())
         intended(hasComponent(SkunkWorkDetailActivity::class.java.name))
-        val listSize = (prefs.getString("skunkworksList", "") ?: "").split(",").map{ SkunkWork(it) }.size
+        val listSize = getSkunkWorksFromSharedPrefs(prefs).size
         assertEquals(list.size, listSize)
     }
 }

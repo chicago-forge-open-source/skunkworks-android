@@ -2,20 +2,24 @@ package com.kata.skunkworks
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 class SkunkWorkRepository(appContext: Context) {
     private val defaultString = """
-        Can Beam,Mini Drone Forge Tour Guide,Smart Light That Goes Red When Build Fails,NFC Chip That Gives Wifi Access,
-        NFC Ventra Clothing,Train Set,Nap Pods,DX War Room,Greeting Robot That Recognizes You Based On Key Card,
-        Cool Light For When Creative Collision is Ready,Interactive Room Reservation System,Custom Magnet All The Things,
-        Amiibo Features Around Features Around The Office,Card Wall With NFC Chips
-    """.trimIndent().replace("\n", "")
+        {"title":"Can Beam"};{"title":"Mini Drone Forge Tour Guide"};{"title":"Smart Light That Goes Red When Build Fails"};{"title":"NFC Chip That Gives Wifi Access"};
+        {"title":"NFC Ventra Clothing"};{"title":"Train Set"};{"title":"Nap Pods"};{"title":"DX War Room"};{"title":"Greeting Robot"};{"title":"That Recognizes You Based On Key Card"};
+        {"title":"Cool Light For When Creative Collision is Ready"};{"title":"Interactive Room Reservation System"};{"title":"Custom Magnet All The Things"};
+        {"title":"Amiibo Features Around Features Around The Office"};{"title":"Card Wall With NFC Chips"}
+        """.trimIndent().replace("\n", "")
 
     private val sharedPrefs = appContext.getSharedPreferences("com.kata.skunkworks", Context.MODE_PRIVATE)
 
     fun findAllSkunkWorks(): MutableList<SkunkWork> {
+        val gson = Gson()
         val skunkWorksString: String = sharedPrefs.getString("skunkworksList", defaultString) ?: defaultString
-        return skunkWorksString.split(",").map{ SkunkWork(it) }.toMutableList()
+
+        return skunkWorksString.split(";").map{ gson.fromJson(it, SkunkWork::class.java) }.toMutableList()
     }
 
     fun addSkunkWork(skunkWork: SkunkWork) {
@@ -25,8 +29,8 @@ class SkunkWorkRepository(appContext: Context) {
         skunkWorks.add(skunkWork)
         editor.remove("skunkworksList")
         editor.apply()
-
-        editor.putString("skunkworksList", skunkWorks.map(SkunkWork::title).joinToString(","))
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        editor.putString("skunkworksList", gson.toJson(skunkWork))
         editor.apply()
     }
 
@@ -38,7 +42,7 @@ class SkunkWorkRepository(appContext: Context) {
         editor.remove("skunkworksList")
         editor.apply()
 
-        editor.putString("skunkworksList", skunkWorks.map(SkunkWork::title).joinToString(","))
+        editor.putString("skunkworksList", skunkWorks.map(SkunkWork::title).joinToString(";"))
         editor.apply()
     }
 }

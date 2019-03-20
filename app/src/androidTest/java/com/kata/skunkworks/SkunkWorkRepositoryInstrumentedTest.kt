@@ -37,21 +37,45 @@ class SkunkWorkRepositoryInstrumentedTest {
     @Test
     fun givenNoSkunksWorksExistSkunkWorksReturnsDefaultList() {
         val list: List<SkunkWork> = listOf(
-            "Can Beam",
-            "Mini Drone Forge Tour Guide",
-            "Smart Light That Goes Red When Build Fails",
-            "NFC Chip That Gives Wifi Access",
-            "NFC Ventra Clothing",
-            "Train Set",
-            "Nap Pods",
-            "DX War Room",
-            "Greeting Robot That Recognizes You Based On Key Card",
-            "Cool Light For When Creative Collision is Ready",
-            "Interactive Room Reservation System",
-            "Custom Magnet All The Things",
-            "Amiibo Features Around Features Around The Office",
-            "Card Wall With NFC Chips"
-        ).map { SkunkWork(it) }
+            SkunkWork("Can Beam"),
+            SkunkWork("Mini Drone Forge Tour Guide"),
+            SkunkWork("Smart Light That Goes Red When Build Fails"),
+            SkunkWork("NFC Chip That Gives Wifi Access"),
+            SkunkWork("NFC Ventra Clothing"),
+            SkunkWork("Train Set"),
+            SkunkWork("Nap Pods"),
+            SkunkWork("DX War Room"),
+            SkunkWork("Greeting Robot"),
+            SkunkWork("That Recognizes You Based On Key Card"),
+            SkunkWork("Cool Light For When Creative Collision is Ready"),
+            SkunkWork("Interactive Room Reservation System"),
+            SkunkWork("Amiibo Features Around Features Around The Office"),
+            SkunkWork("Card Wall With NFC Chips")
+        )
+/*
+        val list: List<SkunkWork> = listOf(
+            """{"title":"Can Beam"}""",
+            """{"title":"Mini Drone Forge Tour Guide"}""",
+            """{"title":"Smart Light That Goes Red When Build Fails"}""",
+            """{"title":"NFC Chip That Gives Wifi Access"}""",
+            """{"title":"NFC Ventra Clothing"}""",
+            """{"title":"Train Set"}""",
+            """{"title":"Nap Pods"}""",
+            """{"title":"DX War Room"}""",
+            """{"title":"Greeting Robot"}""",
+            """{"title":"That Recognizes You Based On Key Card"}""",
+            """{"title":"Cool Light For When Creative Collision is Ready"}""",
+            """{"title":"Interactive Room Reservation System"}""",
+            """{"title":"Amiibo Features Around Features Around The Office"}""",
+            """{"title":"Card Wall With NFC Chips"}"""
+        ).map { SkunkWork(it) }*/
+
+/*        val list: List<SkunkWork> = """
+            {"title":"Can Beam"};{"title":"Mini Drone Forge Tour Guide"};{"title":"Smart Light That Goes Red When Build Fails"};{"title":"NFC Chip That Gives Wifi Access"};
+        {"title":"NFC Ventra Clothing"};{"title":"Train Set"};{"title":"Nap Pods"};{"title":"DX War Room"};{"title":"Greeting Robot"};{"title":"That Recognizes You Based On Key Card"};
+        {"title":"Cool Light For When Creative Collision is Ready"};{"title":"Interactive Room Reservation System"};{"title":"Custom Magnet All The Things"};
+        {"title":"Amiibo Features Around Features Around The Office"};{"title":"Card Wall With NFC Chips"}
+        """.trimIndent().replace("\n", "").map { SkunkWork(it) }*/
 
         assertEquals(list, repo.findAllSkunkWorks())
     }
@@ -61,5 +85,12 @@ class SkunkWorkRepositoryInstrumentedTest {
         val skunkWork = SkunkWork("New SkunkWork")
         repo.addSkunkWork(skunkWork)
         assertTrue(repo.findAllSkunkWorks().contains(skunkWork))
+    }
+
+    @Test
+    fun findsAllSkunkWorksWithNotes() {
+        val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B", "a note"))
+        putListOfSkunkWorksSharedPrefs(editor, list)
+        assertEquals(list, repo.findAllSkunkWorks())
     }
 }
