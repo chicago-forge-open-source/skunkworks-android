@@ -1,7 +1,5 @@
 package com.kata.skunkworks
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
@@ -22,8 +20,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class AddSkunkWorkInstrumentedTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val prefs: SharedPreferences = context.getSharedPreferences("com.kata.skunkworks", Context.MODE_PRIVATE)
-    private val editor: SharedPreferences.Editor = prefs.edit()
+    private val prefs = createSharedPrefs(context)
+    private val editor = prefs.edit()
     private val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B"))
 
     @get:Rule
@@ -31,20 +29,14 @@ class AddSkunkWorkInstrumentedTest {
 
     @Before
     fun setUp() {
-        clearSharedPrefs()
-        editor.putString("skunkworksList", list.map(SkunkWork::title).joinToString(","))
-        editor.commit()
+        clearSharedPrefs(editor)
+        putListOfSkunkWorksSharedPrefs(editor, list)
         onView(withId(R.id.show_add_skunk_work)).perform(click())
     }
 
     @After
     fun cleanUp() {
-        clearSharedPrefs()
-    }
-
-    private fun clearSharedPrefs() {
-        editor.clear()
-        editor.commit()
+        clearSharedPrefs(editor)
     }
 
     @Test
@@ -78,7 +70,7 @@ class AddSkunkWorkInstrumentedTest {
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(""))
         onView(withId(R.id.sw_save_btn)).perform(click())
         intended(hasComponent(SkunkWorkDetailActivity::class.java.name))
-        val listSize = (prefs.getString("skunkworksList", "") ?: "").split(",").map(::SkunkWork).size
+        val listSize = (prefs.getString("skunkworksList", "") ?: "").split(",").map{ SkunkWork(it) }.size
         assertEquals(list.size, listSize)
     }
 }

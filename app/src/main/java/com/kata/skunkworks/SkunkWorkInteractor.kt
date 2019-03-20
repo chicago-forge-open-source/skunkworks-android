@@ -3,7 +3,7 @@ package com.kata.skunkworks
 class SkunkWorkInteractor(val skunkworkRepo: SkunkWorkRepository) {
 
     fun findAllSkunkWork(): MutableList<SkunkWork> {
-        return skunkworkRepo.findAllSkunkWorksss()
+        return skunkworkRepo.findAllSkunkWorks()
     }
 
     fun addSkunkWork(title: String) {

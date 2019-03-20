@@ -13,14 +13,14 @@ class SkunkWorkRepository(appContext: Context) {
 
     private val sharedPrefs = appContext.getSharedPreferences("com.kata.skunkworks", Context.MODE_PRIVATE)
 
-    fun findAllSkunkWorksss(): MutableList<SkunkWork> {
+    fun findAllSkunkWorks(): MutableList<SkunkWork> {
         val skunkWorksString: String = sharedPrefs.getString("skunkworksList", defaultString) ?: defaultString
-        return skunkWorksString.split(",").map(::SkunkWork).toMutableList()
+        return skunkWorksString.split(",").map{ SkunkWork(it) }.toMutableList()
     }
 
     fun addSkunkWork(skunkWork: SkunkWork) {
         val editor: SharedPreferences.Editor = sharedPrefs.edit()
-        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorksss().toMutableList()
+        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorks().toMutableList()
 
         skunkWorks.add(skunkWork)
         editor.remove("skunkworksList")
@@ -32,7 +32,7 @@ class SkunkWorkRepository(appContext: Context) {
 
     fun deleteSkunkWork(id: Int) {
         val editor: SharedPreferences.Editor = sharedPrefs.edit()
-        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorksss().toMutableList()
+        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorks().toMutableList()
 
         skunkWorks.removeAt(id)
         editor.remove("skunkworksList")

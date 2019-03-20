@@ -1,7 +1,5 @@
 package com.kata.skunkworks
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -22,33 +20,30 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class AddNoteToSkunkWorkInstrumentationTest{
+class AddNoteToSkunkWorkInstrumentationTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val prefs: SharedPreferences = context.getSharedPreferences("com.kata.skunkworks", Context.MODE_PRIVATE)
-    private val editor: SharedPreferences.Editor = prefs.edit()
-    private val title ="Can Beam"
-
+    private val prefs = createSharedPrefs(context)
+    private val editor = prefs.edit()
+    private val title = "Can Beam"
 
     @get:Rule
     val activityRule = IntentsTestRule(MainActivity::class.java)
 
     @Before
     fun setUp() {
-        editor.remove("skunkworksList")
-        editor.commit()
-
-        editor.putString("skunkworksList", title)
-        editor.commit()
+        clearSharedPrefs(editor)
+        putStringSharedPrefs(editor, title)
 
         onView(withId(R.id.skunk_works_list))
-            .perform(RecyclerViewActions
-                .actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+            .perform(
+                RecyclerViewActions
+                    .actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+            )
     }
 
     @After
     fun cleanUp() {
-        editor.clear()
-        editor.commit()
+        clearSharedPrefs(editor)
     }
 
     @Test
