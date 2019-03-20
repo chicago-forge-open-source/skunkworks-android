@@ -11,7 +11,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".SkunkWorkActivity">
         </activity>
-        <activity android:name=".AddSkunkWorkActivity"/>
+        <activity android:name=".SkunkWorkDetailActivity"/>
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name"

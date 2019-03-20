@@ -49,7 +49,7 @@ class AddSkunkWorkInstrumentedTest {
 
     @Test
     fun whenClickingAddSkunkWorkShowsAddSkunkWorkActivity() {
-        intended(hasComponent(AddSkunkWorkActivity::class.java.name))
+        intended(hasComponent(SkunkWorkDetailActivity::class.java.name))
         onView(withId(R.id.sw_title_edit_text)).check(matches(withHint("Title")))
         onView(withId(R.id.sw_save_btn)).check(matches(withText("Save")))
     }
@@ -77,7 +77,7 @@ class AddSkunkWorkInstrumentedTest {
     fun validatesForStingTitle() {
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(""))
         onView(withId(R.id.sw_save_btn)).perform(click())
-        intended(hasComponent(AddSkunkWorkActivity::class.java.name))
+        intended(hasComponent(SkunkWorkDetailActivity::class.java.name))
         val listSize = (prefs.getString("skunkworksList", "") ?: "").split(",").map(::SkunkWork).size
         assertEquals(list.size, listSize)
     }

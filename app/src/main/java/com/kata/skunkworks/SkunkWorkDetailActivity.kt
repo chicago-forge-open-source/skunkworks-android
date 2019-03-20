@@ -3,15 +3,15 @@ package com.kata.skunkworks
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_add_skunk_work.*
+import kotlinx.android.synthetic.main.activity_skunk_work_detail.*
 
-class AddSkunkWorkActivity : AppCompatActivity() {
+class SkunkWorkDetailActivity : AppCompatActivity() {
     private val appContext: Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_skunk_work)
+        setContentView(R.layout.activity_skunk_work_detail)
 
         sw_save_btn.setOnClickListener {
             val interactor = SkunkWorkInteractor(SkunkWorkRepository(appContext))

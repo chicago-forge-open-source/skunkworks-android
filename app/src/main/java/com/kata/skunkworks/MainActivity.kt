@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         show_add_skunk_work.setOnClickListener {
-            val intent = Intent(appContext, AddSkunkWorkActivity::class.java)
+            val intent = Intent(appContext, SkunkWorkDetailActivity::class.java)
             startActivity(intent)
         }
     }
