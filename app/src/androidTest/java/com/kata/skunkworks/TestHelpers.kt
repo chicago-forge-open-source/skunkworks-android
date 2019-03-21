@@ -34,5 +34,3 @@ fun getSkunkWorksFromSharedPrefs(prefs : SharedPreferences) : List<SkunkWork> {
     val list = (prefs.getString(LIST_KEY, "") ?: "").split(";")
     return list.map{ gson.fromJson(it, SkunkWork::class.java) }
 }
-//    map(::SkunkWork) == { SkunkWork(it) }
-//    map(SkunkWork::title) == {skunkwork -> skunkwork.title }
