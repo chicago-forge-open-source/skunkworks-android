@@ -11,12 +11,14 @@ class SkunkWorkRepository(appContext: Context) {
         {"title":"Mini Drone Forge Tour Guide"};
         {"title":"Smart Light That Goes Red When Build Fails"};
         {"title":"NFC Chip That Gives Wifi Access"};
-        {"title":"NFC Ventra Clothing"};{"title":"Train Set"};
-        {"title":"Nap Pods"};{"title":"DX War Room"};
-        {"title":"Greeting Robot"};
-        {"title":"That Recognizes You Based On Key Card"};
+        {"title":"NFC Ventra Clothing"};
+        {"title":"Train Set"};
+        {"title":"Nap Pods"};
+        {"title":"DX War Room"};
+        {"title":"Greeting Robot That Recognizes You Based On Key Card"};
         {"title":"Cool Light For When Creative Collision is Ready"};
         {"title":"Interactive Room Reservation System"};
+        {"title":"Custom Magnet All The Things"};
         {"title":"Amiibo Features Around Features Around The Office"};
         {"title":"Card Wall With NFC Chips"}
         """.trimIndent().replace("\n", "")
