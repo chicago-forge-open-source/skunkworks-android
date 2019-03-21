@@ -51,6 +51,7 @@ class AddSkunkWorkInstrumentedTest {
         val newTitle = "Some New Idea"
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(newTitle))
         onView(withId(R.id.sw_save_btn)).perform(click())
+
         onView(withId(R.id.skunk_works_list)).check(matches(hasChildCount(list.size + 1)))
         onView(withText(newTitle)).check(matches(isDisplayed()))
     }
@@ -61,6 +62,7 @@ class AddSkunkWorkInstrumentedTest {
         val newTitle = "     $title"
         onView(withId(R.id.sw_title_edit_text)).perform(typeText(newTitle))
         onView(withId(R.id.sw_save_btn)).perform(click())
+
         onView(withId(R.id.skunk_works_list)).check(matches(hasChildCount(list.size + 1)))
         onView(withText(title)).check(matches(isDisplayed()))
     }

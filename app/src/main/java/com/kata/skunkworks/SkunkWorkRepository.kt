@@ -7,10 +7,18 @@ import com.google.gson.GsonBuilder
 
 class SkunkWorkRepository(appContext: Context) {
     private val defaultString = """
-        {"title":"Can Beam"};{"title":"Mini Drone Forge Tour Guide"};{"title":"Smart Light That Goes Red When Build Fails"};{"title":"NFC Chip That Gives Wifi Access"};
-        {"title":"NFC Ventra Clothing"};{"title":"Train Set"};{"title":"Nap Pods"};{"title":"DX War Room"};{"title":"Greeting Robot"};{"title":"That Recognizes You Based On Key Card"};
-        {"title":"Cool Light For When Creative Collision is Ready"};{"title":"Interactive Room Reservation System"};{"title":"Custom Magnet All The Things"};
-        {"title":"Amiibo Features Around Features Around The Office"};{"title":"Card Wall With NFC Chips"}
+        {"title":"Can Beam"};
+        {"title":"Mini Drone Forge Tour Guide"};
+        {"title":"Smart Light That Goes Red When Build Fails"};
+        {"title":"NFC Chip That Gives Wifi Access"};
+        {"title":"NFC Ventra Clothing"};{"title":"Train Set"};
+        {"title":"Nap Pods"};{"title":"DX War Room"};
+        {"title":"Greeting Robot"};
+        {"title":"That Recognizes You Based On Key Card"};
+        {"title":"Cool Light For When Creative Collision is Ready"};
+        {"title":"Interactive Room Reservation System"};
+        {"title":"Amiibo Features Around Features Around The Office"};
+        {"title":"Card Wall With NFC Chips"}
         """.trimIndent().replace("\n", "")
 
     private val sharedPrefs = appContext.getSharedPreferences("com.kata.skunkworks", Context.MODE_PRIVATE)

@@ -26,17 +26,9 @@ class SkunkWorkListAdapter(val appContext: Context, var skunkWorkList: MutableLi
         return skunkWorkList.size
     }
 
-    fun delete(position: Int) {
-        this.skunkWorkList.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, getItemCount() - position)
-    }
-
     override fun onBindViewHolder(skunkWorkListItem: SkunkWorkListItem, position: Int) {
         skunkWorkListItem.bindTitle(skunkWorkList[position].title)
-        skunkWorkListItem.deleteSkunkWork(position, this)
     }
-
 
     class SkunkWorkListItem(private val skunkwork: View) : RecyclerView.ViewHolder(skunkwork), View.OnClickListener {
         init {
@@ -51,14 +43,6 @@ class SkunkWorkListAdapter(val appContext: Context, var skunkWorkList: MutableLi
 
         fun bindTitle(title: String) {
             skunkwork.skunk_work_title.text = title
-        }
-
-        fun deleteSkunkWork(position: Int, adapter: SkunkWorkListAdapter) {
-            skunkwork.remove_skunkwork.setOnClickListener {
-                val interactor = SkunkWorkInteractor(SkunkWorkRepository(adapter.appContext))
-                interactor.deleteSkunkWork(position)
-                adapter.delete(position)
-            }
         }
     }
 

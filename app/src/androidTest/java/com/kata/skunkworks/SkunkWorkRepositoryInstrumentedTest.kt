@@ -7,6 +7,7 @@ import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -52,30 +53,6 @@ class SkunkWorkRepositoryInstrumentedTest {
             SkunkWork("Amiibo Features Around Features Around The Office"),
             SkunkWork("Card Wall With NFC Chips")
         )
-/*
-        val list: List<SkunkWork> = listOf(
-            """{"title":"Can Beam"}""",
-            """{"title":"Mini Drone Forge Tour Guide"}""",
-            """{"title":"Smart Light That Goes Red When Build Fails"}""",
-            """{"title":"NFC Chip That Gives Wifi Access"}""",
-            """{"title":"NFC Ventra Clothing"}""",
-            """{"title":"Train Set"}""",
-            """{"title":"Nap Pods"}""",
-            """{"title":"DX War Room"}""",
-            """{"title":"Greeting Robot"}""",
-            """{"title":"That Recognizes You Based On Key Card"}""",
-            """{"title":"Cool Light For When Creative Collision is Ready"}""",
-            """{"title":"Interactive Room Reservation System"}""",
-            """{"title":"Amiibo Features Around Features Around The Office"}""",
-            """{"title":"Card Wall With NFC Chips"}"""
-        ).map { SkunkWork(it) }*/
-
-/*        val list: List<SkunkWork> = """
-            {"title":"Can Beam"};{"title":"Mini Drone Forge Tour Guide"};{"title":"Smart Light That Goes Red When Build Fails"};{"title":"NFC Chip That Gives Wifi Access"};
-        {"title":"NFC Ventra Clothing"};{"title":"Train Set"};{"title":"Nap Pods"};{"title":"DX War Room"};{"title":"Greeting Robot"};{"title":"That Recognizes You Based On Key Card"};
-        {"title":"Cool Light For When Creative Collision is Ready"};{"title":"Interactive Room Reservation System"};{"title":"Custom Magnet All The Things"};
-        {"title":"Amiibo Features Around Features Around The Office"};{"title":"Card Wall With NFC Chips"}
-        """.trimIndent().replace("\n", "").map { SkunkWork(it) }*/
 
         assertEquals(list, repo.findAllSkunkWorks())
     }
