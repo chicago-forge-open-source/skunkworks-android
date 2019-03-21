@@ -1,8 +1,6 @@
 package com.kata.skunkworks
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -19,28 +17,22 @@ import org.junit.runner.RunWith
 class SkunkWorkListInstrumentedTest {
     private val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B"))
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val prefs: SharedPreferences = context.getSharedPreferences("com.kata.skunkworks", Context.MODE_PRIVATE)
-    private val editor: SharedPreferences.Editor = prefs.edit()
+    private val prefs = createSharedPrefs(context)
+    private val editor = prefs.edit()
 
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java, true, false)
 
     @Before
     fun setUp() {
-        clearSharedPrefs()
-        editor.putString("skunkworksList", list.map(SkunkWork::title).joinToString(","))
-        editor.commit()
+        clearSharedPrefs(editor)
+        putListOfSkunkWorksSharedPrefs(editor, list)
         activityRule.launchActivity(Intent())
     }
 
     @After
     fun cleanUp() {
-        clearSharedPrefs()
-    }
-
-    private fun clearSharedPrefs() {
-        editor.clear()
-        editor.commit()
+        clearSharedPrefs(editor)
     }
 
     @Test

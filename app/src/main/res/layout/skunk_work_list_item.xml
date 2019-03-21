@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:orientation="vertical" android:id="@+id/linearLayout2">
 
     <TextView
-        android:id="@+id/skunk_work_title"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="12dp"
-        android:textColor="@android:color/black"
-        android:textSize="24sp" />
+            android:id="@+id/skunk_work_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" tools:layout_conversion_absoluteHeight="57dp" tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp" tools:layout_conversion_absoluteWidth="24dp"/>
 
     <View
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
-</LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray" tools:layout_conversion_absoluteHeight="1dp"
+            tools:layout_editor_absoluteY="57dp" tools:layout_editor_absoluteX="0dp"
+            tools:layout_conversion_absoluteWidth="411dp" android:id="@+id/view3"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,45 +20,39 @@ class SkunkWorkRepositoryInstrumentedTest {
 
     @Before
     fun setUp() {
-        clearSharedPrefs()
+        clearSharedPrefs(editor)
     }
 
     @After
     fun cleanUp() {
-        clearSharedPrefs()
-    }
-
-    private fun clearSharedPrefs() {
-        editor.clear()
-        editor.commit()
+        clearSharedPrefs(editor)
     }
 
     @Test
     fun givenAListOfSkunkWorksExistFindAllSkunkWorksReturnsTheList() {
         val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B"))
-        editor.putString("skunkworksList", list.map(SkunkWork::title).joinToString(","))
-        editor.commit()
+        putListOfSkunkWorksSharedPrefs(editor, list)
         assertEquals(list, repo.findAllSkunkWorks())
     }
 
     @Test
     fun givenNoSkunksWorksExistSkunkWorksReturnsDefaultList() {
         val list: List<SkunkWork> = listOf(
-            "Can Beam",
-            "Mini Drone Forge Tour Guide",
-            "Smart Light That Goes Red When Build Fails",
-            "NFC Chip That Gives Wifi Access",
-            "NFC Ventra Clothing",
-            "Train Set",
-            "Nap Pods",
-            "DX War Room",
-            "Greeting Robot That Recognizes You Based On Key Card",
-            "Cool Light For When Creative Collision is Ready",
-            "Interactive Room Reservation System",
-            "Custom Magnet All The Things",
-            "Amiibo Features Around Features Around The Office",
-            "Card Wall With NFC Chips"
-        ).map(::SkunkWork)
+            SkunkWork("Can Beam"),
+            SkunkWork("Mini Drone Forge Tour Guide"),
+            SkunkWork("Smart Light That Goes Red When Build Fails"),
+            SkunkWork("NFC Chip That Gives Wifi Access"),
+            SkunkWork("NFC Ventra Clothing"),
+            SkunkWork("Train Set"),
+            SkunkWork("Nap Pods"),
+            SkunkWork("DX War Room"),
+            SkunkWork("Greeting Robot"),
+            SkunkWork("That Recognizes You Based On Key Card"),
+            SkunkWork("Cool Light For When Creative Collision is Ready"),
+            SkunkWork("Interactive Room Reservation System"),
+            SkunkWork("Amiibo Features Around Features Around The Office"),
+            SkunkWork("Card Wall With NFC Chips")
+        )
 
         assertEquals(list, repo.findAllSkunkWorks())
     }
@@ -68,5 +62,12 @@ class SkunkWorkRepositoryInstrumentedTest {
         val skunkWork = SkunkWork("New SkunkWork")
         repo.addSkunkWork(skunkWork)
         assertTrue(repo.findAllSkunkWorks().contains(skunkWork))
+    }
+
+    @Test
+    fun findsAllSkunkWorksWithNotes() {
+        val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B", "a note"))
+        putListOfSkunkWorksSharedPrefs(editor, list)
+        assertEquals(list, repo.findAllSkunkWorks())
     }
 }

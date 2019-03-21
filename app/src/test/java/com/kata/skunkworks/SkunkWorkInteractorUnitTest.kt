@@ -11,7 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class SkunkWorkInteractorUnitTest {
 
-    private val list: List<SkunkWork> = listOf(
+    private val list: MutableList<SkunkWork> = listOf(
             "Can Beam",
             "Mini Drone Forge Tour Guide",
             "Smart Light That Goes Red When Build Fails",
@@ -26,7 +26,7 @@ class SkunkWorkInteractorUnitTest {
             "Custom Magnet All The Things",
             "Amiibo Features Around Features Around The Office",
             "Card Wall With NFC Chips"
-    ).map(::SkunkWork)
+    ).map{ SkunkWork(it) }.toMutableList()
 
     @Mock
     private lateinit var mockRepo: SkunkWorkRepository
