@@ -57,16 +57,22 @@ class SkunkWorkRepositoryInstrumentedTest {
     }
 
     @Test
-    fun addSkunkWorksAddsSkunkWorkToList() {
-        val skunkWork = SkunkWork("New SkunkWork")
-        repo.addSkunkWork(skunkWork)
-        assertTrue(repo.findAllSkunkWorks().contains(skunkWork))
-    }
-
-    @Test
     fun findsAllSkunkWorksWithNotes() {
         val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B", "a note"))
         putListOfSkunkWorksSharedPrefs(editor, list)
         assertEquals(list, repo.findAllSkunkWorks())
+    }
+
+    @Test
+    fun addSkunkWorksAddsSkunkWorkToList() {
+        val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B", "a note"))
+        putListOfSkunkWorksSharedPrefs(editor, list)
+
+        val skunkWork = SkunkWork("New SkunkWork")
+        repo.addSkunkWork(skunkWork)
+
+        val updatedList : List<SkunkWork> = repo.findAllSkunkWorks()
+        assertEquals(list.size + 1, updatedList.size)
+        assertTrue(updatedList.contains(skunkWork))
     }
 }

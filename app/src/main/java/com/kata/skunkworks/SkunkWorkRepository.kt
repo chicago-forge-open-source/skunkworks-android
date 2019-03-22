@@ -35,12 +35,13 @@ class SkunkWorkRepository(appContext: Context) {
     fun addSkunkWork(skunkWork: SkunkWork) {
         val editor: SharedPreferences.Editor = sharedPrefs.edit()
         val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorks().toMutableList()
-
         skunkWorks.add(skunkWork)
+
         editor.remove("skunkworksList")
         editor.apply()
+
         val gson = GsonBuilder().setPrettyPrinting().create()
-        editor.putString("skunkworksList", gson.toJson(skunkWork))
+        editor.putString("skunkworksList", skunkWorks.map{ gson.toJson(it) }.joinToString(";"))
         editor.apply()
     }
 
