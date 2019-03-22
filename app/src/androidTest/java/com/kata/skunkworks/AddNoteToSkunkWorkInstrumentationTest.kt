@@ -32,7 +32,7 @@ class AddNoteToSkunkWorkInstrumentationTest {
     @Before
     fun setUp() {
         clearSharedPrefs(editor)
-        putStringSharedPrefs(editor, title)
+        putListOfSkunkWorksSharedPrefs(editor, listOf(SkunkWork(title)))
 
         onView(withId(R.id.skunk_works_list))
             .perform(
