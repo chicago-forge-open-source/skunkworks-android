@@ -37,13 +37,13 @@ class SkunkWorkRepository(appContext: Context) {
     }
 
     fun addSkunkWork(skunkWork: SkunkWork) {
-        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorks().toMutableList()
+        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorks()
         skunkWorks.add(skunkWork)
         putSkunkWorks(skunkWorks)
     }
 
     fun deleteSkunkWork(id: Int) {
-        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorks().toMutableList()
+        val skunkWorks: MutableList<SkunkWork> = findAllSkunkWorks()
         skunkWorks.removeAt(id)
         putSkunkWorks(skunkWorks)
     }
