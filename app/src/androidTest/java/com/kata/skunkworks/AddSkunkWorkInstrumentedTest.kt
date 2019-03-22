@@ -25,7 +25,7 @@ class AddSkunkWorkInstrumentedTest {
     private val list: List<SkunkWork> = listOf(SkunkWork("A"), SkunkWork("B"))
 
     @get:Rule
-    val activityRule = IntentsTestRule(MainActivity::class.java)
+    val activityRule = IntentsTestRule(SkunkWorkListActivity::class.java)
 
     @Before
     fun setUp() {
