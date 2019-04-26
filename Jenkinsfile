@@ -7,9 +7,7 @@ pipeline {
                 echo 'Building..'
 		script {
 			sh './gradlew -v'
-			sh 'ls'
-			sh 'cd ..'
-			sh 'ls'
+			sh 'ls ~'
 			sh './gradlew assemble'
 		}
             }
