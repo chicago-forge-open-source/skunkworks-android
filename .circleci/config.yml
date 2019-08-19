@@ -45,6 +45,6 @@ jobs:
 
     - run: circle-android wait-for-boot
 
-    - run: ./gradlew test
-    - run: ./gradlew connectedAndroidTest
+    # - run: ./gradlew test
+    # - run: ./gradlew connectedAndroidTest
     - run: ./gradlew publish
